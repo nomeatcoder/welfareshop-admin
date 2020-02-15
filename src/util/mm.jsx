@@ -3,10 +3,10 @@
 
 const conf = {
     // online
-    // serverHost: 'http://admin.happymmall.com'
+    serverHost: 'http://admin.welfare.com/',
     // dev
-    serverHost: '',
-    imageHost: 'http://img.happymmall.com/',
+    // serverHost: '',
+    imageHost: 'http://image.welfare.com/',
 }
 
 class MMUtil{

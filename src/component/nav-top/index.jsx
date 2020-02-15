@@ -20,10 +20,13 @@ const TopNav = React.createClass({
             this.setState({
                 userName : userInfo.username || ''
             });
+        }else {
+            _mm.doLogin()
         }
     },
     onLogout(){
         _user.logout().then(res => {
+            _mm.removeStorage('userInfo')
             window.location.href = '#/login';
         }, errMsg => {
             _mm.errorTips(errMsg);
@@ -43,12 +46,7 @@ const TopNav = React.createClass({
                 </div>
                 <ul className="nav navbar-top-links navbar-right">
                     <li className="dropDown">
-                        {
-                            this.state.userName ? 
-                            <span>欢迎，{this.state.userName}</span> :
-                            <span>欢迎</span>
-                        }
-                        
+                            <span>欢迎，{this.state.userName}</span>         
                     </li>
                     <li className="dropDown">
                         <a className="btn-logout" onClick={this.onLogout}>退出</a>

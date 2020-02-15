@@ -1,7 +1,7 @@
 {
-  "name": "mmall_admin_fe",
+  "name": "welfare-admin",
   "version": "1.0.0",
-  "description": "admin.happymmall.com",
+  "description": "admin.welfare.com",
   "main": "index.js",
   "scripts": {
     "dev"     : "WEBPACK_ENV=dev ./node_modules/.bin/webpack-dev-server --port 8086 --inline",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.oschina.net/happymmall/mmall_admin_fe.git"
+    "url": "https://github.com/nomeatcoder/welfare-admin.git"
   },
   "author": "Chenzhe Mao",
   "license": "ISC",
@@ -24,7 +24,7 @@
     "react-fileupload": "^2.4.0",
     "react-router": "^3.0.2",
     "sb-admin-2": "^3.3.8",
-    "simditor": "2.3.6"
+    "simditor": "^2.3.6"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",

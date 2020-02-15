@@ -17,7 +17,8 @@ const ProductCategory = React.createClass({
     getInitialState() {
         return {
             parentCategoryId    : this.props.params.categoryId || 0,
-            categoryList        : []
+            categoryList        : [],
+            ppCategoryId        : 0
         };
     },
     componentDidMount(){
@@ -59,6 +60,17 @@ const ProductCategory = React.createClass({
             _mm.errorTips('请输入正确的品类名称');
         }
     },
+    onDelCategory(categoryId){
+        // 删除
+        _product.delCategory({
+            categoryId : categoryId
+        }).then(res => {
+            _mm.successTips(res);
+            this.initCategory(this.state.parentCategoryId);
+        }, errMsg => {
+            _mm.errorTips(errMsg);
+        });
+    },
     render() {
         return (
             <div id="page-wrapper">
@@ -72,7 +84,14 @@ const ProductCategory = React.createClass({
                 </PageTitle>
                 <div className="row">
                     <div className="col-lg-12">
-                        <p>当前商品分类ID：{this.state.parentCategoryId}</p>
+                        <p>
+                        当前商品分类ID：{this.state.parentCategoryId}
+                        {
+                            this.state.parentCategoryId != 0 ? 
+                            <Link to={'/product.category/index/' + this.state.ppCategoryId} className="opera">&nbsp;返回上级</Link>
+                            : null
+                        }
+                        </p>
                     </div>
                     <div className="table-wrap col-lg-12">
                         <table className="table table-striped table-bordered table-hover">
@@ -98,6 +117,7 @@ const ProductCategory = React.createClass({
                                                 <Link to={'/product.category/index/' + category.id} className="opera">查看其子品类</Link>
                                                 : null
                                             }
+                                            <a className="opera" onClick={this.onDelCategory.bind(this, category.id)}>删除</a>
                                             </td>
                                         </tr>
                                     );

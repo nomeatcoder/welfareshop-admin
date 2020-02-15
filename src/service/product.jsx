@@ -69,6 +69,15 @@ export default class Product{
             }
         });
     }
+    // 删除品类
+    delCategory(category){
+        return _mm.request({
+            url     : _mm.getServerUrl('/manage/category/del_category.do'),
+            data    : {
+                categoryId      : category.categoryId    || 0
+            }
+        });
+    }
     // 更新品类名称
     updateCategoryName(category){
         return _mm.request({
