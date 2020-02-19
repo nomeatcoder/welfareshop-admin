@@ -92,6 +92,17 @@ const ProductList = React.createClass({
             });
         }
     },
+    // 删除
+    onDelProduct(productId){
+        _product.delProduct({
+            productId : productId
+        }).then(res => {
+            _mm.successTips(res);
+            this.loadProductList();
+        }, errMsg => {
+            _mm.errorTips(errMsg);
+        });
+    },
     render() {
         
         return (
@@ -147,6 +158,7 @@ const ProductList = React.createClass({
                                                 <td>
                                                     <Link className="opear" to={ '/product/detail/' + product.id}>查看</Link>
                                                     <Link className="opear"  to={ '/product/save/' + product.id}>编辑</Link>
+                                                    <a className="opear" onClick={this.onDelProduct.bind(this, product.id)}>删除</a>
                                                 </td>
                                             </tr>
                                         );

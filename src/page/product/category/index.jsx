@@ -45,7 +45,7 @@ const ProductCategory = React.createClass({
     },
     onUpdateName(categoryId, categoryName){
         let newName = window.prompt("请输入新的品类名称", categoryName); 
-        if(newName){
+        if(newName!=categoryName){
             // 更新
             _product.updateCategoryName({
                 categoryId : categoryId,

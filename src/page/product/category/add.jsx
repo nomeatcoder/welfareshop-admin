@@ -7,7 +7,13 @@ import { Link }     from 'react-router';
 
 import PageTitle    from 'component/page-title/index.jsx';
 
-import Product      from 'service/product.jsx'
+import Product      from 'service/product.jsx';
+
+import FileUploader from 'component/file-uploader/index.jsx';
+
+import MMUtile from 'util/mm.jsx';
+
+const _mm = new MMUtile();
 
 const _product = new Product();
 
@@ -17,7 +23,8 @@ const ProductCategoryAdd = React.createClass({
             pageName        : '所属品类',
             parentId        : 0,  // 所属品类
             categoryName    : '', // 品类名称
-            categoryList    : []  // 品类集合
+            categoryList    : [],  // 品类集合
+            subImage       : ''
         };
     },
     componentDidMount: function(){
@@ -42,15 +49,37 @@ const ProductCategoryAdd = React.createClass({
             alert('请输入品类名称');
             return;
         }
+        if(this.state.parentId!=0 && !this.state.subImage){
+            alert('二级分类请上传图片')
+            return;
+        }
         // 请求接口
         _product.saveCategory({
-            parentId      : this.state.parentId,
-            categoryName    : this.state.categoryName
+            parentId        : this.state.parentId,
+            categoryName    : this.state.categoryName,
+            subImage        : this.state.subImage
         }).then(res => {
             alert('商品添加成功');
             window.location.href='#/product.category/index';
         }, errMsg => {
             alert(errMsg);
+        });
+    },
+    // 图片上传成功
+    onUploadSuccess(res){
+        let subImage = res.data.uri;
+        this.setState({
+            subImage: subImage
+        });
+    },
+    // 图片上传失败
+    onUploadError(err){
+        alert(err.message || '哪里不对了~');
+    },
+    // 删除图片
+    onDeleteImage(){
+        this.setState({
+            subImage: ''
         });
     },
     render() {
@@ -59,7 +88,7 @@ const ProductCategoryAdd = React.createClass({
                 <PageTitle pageTitle="品类管理 -- 添加品类"/>
                 <div className="row">
                     <div className="form-wrap col-lg-12">
-                        <form className="form-horizontal" onSubmit={this.onSubmit}>
+                        <form className="form-horizontal" >
                             <div className="form-group">
                                 <label className="col-md-2 control-label">{this.state.pageName}</label>
                                 <div className="col-md-10">
@@ -87,10 +116,32 @@ const ProductCategoryAdd = React.createClass({
                                         onChange={this.onValueChange}/>
                                 </div>
                             </div>
-                            
+                            {this.state.parentId!=0?
+                             <div className="form-group">
+                                <label htmlFor="inputEmail3" className="col-md-2 control-label">商品图片</label>
+                                <div className="img-con col-md-10">
+                                    {
+                                        this.state.subImage ? 
+ 
+                                                <div className="sub-img" >
+                                                    <img className="img" src={_mm.getImageUrl(this.state.subImage)}/>
+                                                    <i className="fa fa-close fa-fw" onClick={this.onDeleteImage.bind(this)}></i>
+                                                </div>
+                    
+
+                                         : <div className="notice">请上传图片</div>
+                                    }
+                                </div>
+                                <div className="col-md-offset-2 col-md-10">
+                                    <FileUploader onSuccess={this.onUploadSuccess} onError={this.onUploadError}/>
+                                </div>
+                            </div>
+                            :null
+                            }
                             <div className="form-group">
                                 <div className="col-md-offset-2 col-md-10">
-                                    <button type="submit" className="btn btn-xl btn-primary">提交</button></div>
+                                    <button type="btn" className="btn btn-xl btn-primary"
+                                    onClick={this.onSubmit}>提交</button></div>
                             </div>
                         </form>
                     </div>

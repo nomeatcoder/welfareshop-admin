@@ -27,4 +27,4 @@
 
 2.后端接口也要使用代理，http://localhost:8086/manage/* --> http://admin.welfare.com/manage/
 
-3.后台管理系统的预览账号：admin  happymmalladmin
+3.后台管理系统的预览账号：admin  admin

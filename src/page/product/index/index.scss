@@ -1,11 +1,20 @@
-
-.opear{
+.opear {
     margin: 0 5px;
 }
 
-.search-wrap{
+.search-wrap {
     margin-bottom: 20px;
-    .form-group{
+
+    .form-group {
         margin-right: 10px;
-    }   
+    }
+}
+
+button:focus,
+button:active:focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button.active.focus{
+    outline: none !important;
 }

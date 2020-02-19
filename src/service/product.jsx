@@ -65,7 +65,8 @@ export default class Product{
             url     : _mm.getServerUrl('/manage/category/add_category.do'),
             data    : {
                 parentId        : category.parentId    || 0,
-                categoryName    : category.categoryName  || ''
+                categoryName    : category.categoryName  || '',
+                subImage        : category.subImage    || ''
             }
         });
     }
@@ -75,6 +76,15 @@ export default class Product{
             url     : _mm.getServerUrl('/manage/category/del_category.do'),
             data    : {
                 categoryId      : category.categoryId    || 0
+            }
+        });
+    }
+    // 删除商品
+    delProduct(product){
+        return _mm.request({
+            url     : _mm.getServerUrl('/manage/product/del_product.do'),
+            data    : {
+                productId      : product.productId    || 0
             }
         });
     }
