@@ -140,7 +140,7 @@ const ProductCategoryAdd = React.createClass({
                             }
                             <div className="form-group">
                                 <div className="col-md-offset-2 col-md-10">
-                                    <button type="btn" className="btn btn-xl btn-primary"
+                                    <button type="button" className="btn btn-xl btn-primary"
                                     onClick={this.onSubmit}>提交</button></div>
                             </div>
                         </form>

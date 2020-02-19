@@ -342,7 +342,7 @@ const ProductSave = React.createClass({
                             </div>
                             <div className="form-group">
                                 <div className="col-md-offset-2 col-md-10">
-                                    <button type="btn" className="btn btn-xl btn-primary" onClick={this.onSubmit}>提交</button></div>
+                                    <button type="button" className="btn btn-xl btn-primary" onClick={this.onSubmit}>提交</button></div>
                             </div>
                         </div>
                     </div>
