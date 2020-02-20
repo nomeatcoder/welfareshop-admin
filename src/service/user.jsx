@@ -43,4 +43,31 @@ export default class User{
             method  : 'POST',
         });
     }
+    // 获取用户列表
+    getUserList(listParam){
+        if(listParam.listType == 'list'){
+            return mm.request({
+                url     : mm.getServerUrl('/manage/user/list.do'),
+                data    : {
+                    pageNum : listParam.pageNum || 1
+                }
+            });
+        }
+        else if(listParam.listType == 'search'){
+            return mm.request({
+                url     : mm.getServerUrl('/manage/user/search.do'),
+                data    : listParam
+            });
+        } 
+    }
+    // 积分充值
+    charge(param){
+        return mm.request({
+            url    : mm.getServerUrl('/manage/user/charge.do'), 
+            data   : {
+                integral : param.integral,
+                id       : param.id,
+            }
+        });
+    }
 }
