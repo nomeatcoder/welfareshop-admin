@@ -58,6 +58,9 @@ const SideNav = React.createClass({
                                 <li>
                                     <Link to="/user" activeClassName="active">用户管理</Link>
                                 </li>
+                                <li>
+                                    <Link to="/user.integral" activeClassName="active">积分记录</Link>
+                                </li>
                             </ul>
                         </li>
                     </ul>

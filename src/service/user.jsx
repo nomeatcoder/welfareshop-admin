@@ -70,4 +70,21 @@ export default class User{
             }
         });
     }
+    // 获取积分记录列表
+    getIntegralList(listParam){
+        if(listParam.listType == 'list'){
+            return mm.request({
+                url     : mm.getServerUrl('/manage/user/integral_list.do'),
+                data    : {
+                    pageNum : listParam.pageNum || 1
+                }
+            });
+        }
+        else if(listParam.listType == 'search'){
+            return mm.request({
+                url     : mm.getServerUrl('/manage/user/integral_search.do'),
+                data    : listParam
+            });
+        } 
+    }
 }

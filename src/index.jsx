@@ -26,6 +26,7 @@ import OrderList            from 'page/order/index.jsx';
 import OrderDetail          from 'page/order/detail.jsx';
 import User                 from 'page/user/index.jsx';
 import UserList             from 'page/user/list.jsx';
+import IntegralList         from 'page/user/integral.jsx';
 import Login                from 'page/login/index.jsx';
 import ErrorPage            from 'page/error/index.jsx';
 import BlankPage            from 'page/blank/index.jsx';
@@ -62,6 +63,10 @@ render(
             <Route path="user" component={Layout}>
                 <IndexRedirect to="index" />
                 <Route path="index" component={UserList}/>
+            </Route>
+            <Route path="user.integral" component={Layout}>
+                <IndexRedirect to="index" />
+                <Route path="index" component={IntegralList}/>
             </Route>
             {/* without layout */} 
             <Route path="login" component={Login}/>
