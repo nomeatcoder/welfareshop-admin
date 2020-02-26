@@ -17,9 +17,10 @@ const _mm = new MMUtile();
 
 const _product = new Product();
 
-const ProductCategoryAdd = React.createClass({
+const ProductCategorySave = React.createClass({
     getInitialState() {
         return {
+            categoryId      : this.props.params.categoryId || 0,
             pageName        : '所属品类',
             parentId        : 0,  // 所属品类
             categoryName    : '', // 品类名称
@@ -36,6 +37,20 @@ const ProductCategoryAdd = React.createClass({
         }, errMsg => {
             alert(errMsg);
         });
+        this.loadCategoryDetail();
+    },
+    loadCategoryDetail(){
+        if(this.state.categoryId!=0){
+            _product.getCategoryDetail(this.state.categoryId).then(res => {
+                this.setState({
+                    parentId        : res.parentId,  
+                    categoryName    : res.name, 
+                    subImage        : res.image
+                });
+            }, err => {
+                alert(err.msg || '哪里不对了~');
+            });
+        }
     },
     onValueChange(e){
         let name   = e.target.name;
@@ -55,12 +70,13 @@ const ProductCategoryAdd = React.createClass({
         }
         // 请求接口
         _product.saveCategory({
+            id              : this.state.categoryId,
             parentId        : this.state.parentId,
             categoryName    : this.state.categoryName,
             subImage        : this.state.subImage
         }).then(res => {
-            alert('商品添加成功');
-            window.location.href='#/product.category/index';
+            alert(res);
+            window.location.href='#/product.category/index/' + this.state.parentId;
         }, errMsg => {
             alert(errMsg);
         });
@@ -85,14 +101,14 @@ const ProductCategoryAdd = React.createClass({
     render() {
         return (
             <div id="page-wrapper">
-                <PageTitle pageTitle="品类管理 -- 添加品类"/>
+                <PageTitle pageTitle={'品类管理 -- ' + (this.state.categoryId ? '修改品类' : '添加品类')}/>
                 <div className="row">
                     <div className="form-wrap col-lg-12">
                         <form className="form-horizontal" >
                             <div className="form-group">
                                 <label className="col-md-2 control-label">{this.state.pageName}</label>
                                 <div className="col-md-10">
-                                    <select className="form-control cate-select" name="parentId" onChange={this.onValueChange}>
+                                    <select className="form-control cate-select" name="parentId" onChange={this.onValueChange} value={this.state.parentId}>
                                         <option value="0">/所有</option>
                                         {
                                             this.state.categoryList.map(function(category, index) {
@@ -113,7 +129,8 @@ const ProductCategoryAdd = React.createClass({
                                         name="categoryName"
                                         autoComplete="off"
                                         placeholder="请输入品类名称"
-                                        onChange={this.onValueChange}/>
+                                        onChange={this.onValueChange}
+                                        value={this.state.categoryName}/>
                                 </div>
                             </div>
                             {this.state.parentId!=0?
@@ -151,4 +168,4 @@ const ProductCategoryAdd = React.createClass({
     }
 });
 
-export default ProductCategoryAdd;
+export default ProductCategorySave;

@@ -79,7 +79,7 @@ const ProductCategory = React.createClass({
             <div id="page-wrapper">
                 <PageTitle pageTitle="品类管理">
                     <div className="page-header-right">
-                        <Link className="btn btn-primary" to="/product.category/add">
+                        <Link className="btn btn-primary" to="/product.category/save">
                             <i className="fa fa-plus fa-fw"></i>
                             <span>添加品类</span>
                         </Link>
@@ -115,10 +115,13 @@ const ProductCategory = React.createClass({
                                                 <span>{category.name}</span>
                                             </td>
                                             <td>
-                                            <a className="opera" onClick={this.onUpdateName.bind(this, category.id, category.name)}>修改名称</a>
+                                            {category.parentId == 0 ? 
+                                                <a className="opera" onClick={this.onUpdateName.bind(this, category.id, category.name)}>修改名称</a>
+                                                :null
+                                            }
                                             {category.parentId == 0 ? 
                                                 <Link to={'/product.category/index/' + category.id} className="opera">查看其子品类</Link>
-                                                : null
+                                                : <Link to={'/product.category/save/' + category.id} className="opera">编辑</Link>
                                             }
                                             <a className="opera" onClick={this.onDelCategory.bind(this, category.id)}>删除</a>
                                             </td>

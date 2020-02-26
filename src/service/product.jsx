@@ -33,7 +33,7 @@ export default class Product{
         }
             
     }
-    // 获取商品信息
+    // 更新商品信息
     saveProduct(product){
         return _mm.request({
             url     : _mm.getServerUrl('/manage/product/save.do'),
@@ -59,11 +59,21 @@ export default class Product{
             }
         });
     }
-    // 新增品类
+    // 获取品类详情
+    getCategoryDetail(categoryId){
+        return _mm.request({
+            url     : _mm.getServerUrl('/manage/category/get_category_detail.do'),
+            data    : {
+                categoryId : categoryId || 0
+            }
+        });
+    }
+    // 更新品类
     saveCategory(category){
         return _mm.request({
-            url     : _mm.getServerUrl('/manage/category/add_category.do'),
+            url     : _mm.getServerUrl('/manage/category/save_category.do'),
             data    : {
+                categoryId              : category.id || 0,
                 parentId        : category.parentId    || 0,
                 categoryName    : category.categoryName  || '',
                 subImage        : category.subImage    || ''

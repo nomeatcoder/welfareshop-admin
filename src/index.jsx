@@ -21,7 +21,7 @@ import ProductList          from 'page/product/index/index.jsx';
 import ProductSave          from 'page/product/index/save.jsx';
 import ProductDetail        from 'page/product/index/detail.jsx';
 import ProductCategory      from 'page/product/category/index.jsx';
-import ProductCategoryAdd   from 'page/product/category/add.jsx';
+import ProductCategorySave  from 'page/product/category/save.jsx';
 import OrderList            from 'page/order/index.jsx';
 import OrderDetail          from 'page/order/detail.jsx';
 import User                 from 'page/user/index.jsx';
@@ -51,7 +51,7 @@ render(
             <Route path="product.category" component={Layout}>
                 <IndexRedirect to="index" />
                 <Route path="index(/:categoryId)" component={ProductCategory}/>
-                <Route path="add" component={ProductCategoryAdd}/>
+                <Route path="save(/:categoryId)" component={ProductCategorySave}/>
             </Route>
             {/* order */} 
             <Route path="order" component={Layout}>
