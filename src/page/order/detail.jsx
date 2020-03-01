@@ -104,6 +104,18 @@ const OrderDetail = React.createClass({
                                     <p type="text" className="form-control-static">￥{this.state.orderInfo.payment}</p>
                                 </div>
                             </div>
+                            <div className="form-group">
+                                <label htmlFor="subtitle" className="col-md-2 control-label">积分抵扣：</label>
+                                <div className="col-md-5">
+                                    <p type="text" className="form-control-static">￥{this.state.orderInfo.useIntegral}</p>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="subtitle" className="col-md-2 control-label">实付：</label>
+                                <div className="col-md-5">
+                                    <p type="text" className="form-control-static">￥{this.state.orderInfo.remain}</p>
+                                </div>
+                            </div>
                             <div className="col-md-12">
                                 <table className="table table-striped table-bordered table-hover">
                                     <thead>

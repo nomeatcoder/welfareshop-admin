@@ -107,6 +107,8 @@ const OrderList = React.createClass({
                                     <th>收件人</th>
                                     <th>订单状态</th>
                                     <th>订单总价</th>
+                                    <th>积分抵扣</th>
+                                    <th>实付</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -122,6 +124,8 @@ const OrderList = React.createClass({
                                                 <td>{order.receiverName}</td>
                                                 <td>{order.statusDesc}</td>
                                                 <td>￥{order.payment}</td>
+                                                <td>￥{order.useIntegral}</td>
+                                                <td>￥{order.remain}</td>
                                                 <td>{order.createTime}</td>
                                                 <td>
                                                     <Link className="opear" to={ '/order/detail/' + order.orderNo}>查看</Link>
