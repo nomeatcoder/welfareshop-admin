@@ -31,10 +31,10 @@ const SideNav = React.createClass({
                             </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <Link to="/product" activeClassName="active">商品管理</Link>
+                                    <Link to="/product.category" activeClassName="active">品类管理</Link>
                                 </li>
                                 <li>
-                                    <Link to="/product.category" activeClassName="active">品类管理</Link>
+                                    <Link to="/product" activeClassName="active">商品管理</Link>
                                 </li>
                             </ul>
                         </li>
