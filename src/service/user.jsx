@@ -36,6 +36,14 @@ export default class User{
             }
         });
     }
+    // 校验登录
+    checkLogin(){
+        return mm.request({
+            url     : mm.getServerUrl('/manage/user/checkLogin.do'),
+            method  : 'POST',
+            data    : {}
+        });
+    }
     // 退出登录
     logout(){
         return mm.request({

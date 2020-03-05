@@ -15,14 +15,21 @@ const TopNav = React.createClass({
         };
     },
     componentDidMount(){
+        //本地存在user信息
         let userInfo = _mm.getStorage('userInfo');
         if(userInfo){
-            this.setState({
-                userName : userInfo.username || ''
+            //调后端判断用户是否登录
+            _user.checklogin().then(res => {
+                this.setState({
+                    userName : userInfo.username || ''
+                });
+            },errMsf => {
+                _mm.doLogin();
             });
-        }else {
-            _mm.doLogin()
+        }else{
+            _mm.doLogin();
         }
+        
     },
     onLogout(){
         _user.logout().then(res => {
