@@ -19,7 +19,7 @@ const TopNav = React.createClass({
         let userInfo = _mm.getStorage('userInfo');
         if(userInfo){
             //调后端判断用户是否登录
-            _user.checklogin().then(res => {
+            _user.checkLogin().then(res => {
                 this.setState({
                     userName : userInfo.username || ''
                 });
