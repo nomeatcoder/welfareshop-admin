@@ -88,7 +88,7 @@ const IntegralList = React.createClass({
                         <div className="form-inline">
                             <div className="form-group">
                                 <select className="form-control">
-                                    <option value="username">按用户名查询查询</option>
+                                    <option value="username">按用户名查询</option>
                                 </select>
                             </div>
                             <div className="form-group">
